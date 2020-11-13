@@ -17,12 +17,33 @@ CREATE TABLE employees (
 )
 ;
 
+COPY employees (
+	emp_no,
+	title_id,
+	birth_date,
+	first_name,
+	last_name,
+	sex,
+	hire_date
+	)
+FROM '..\data\employees.csv' 
+DELIMITER ',' 
+CSV HEADER;
+
 CREATE TABLE departments (
 	dept_no VARCHAR(4) NOT NULL,
 	dept_name VARCHAR(18) NOT NULL,
 	PRIMARY KEY (dept_no)
 )
 ;
+
+COPY departments (
+	dept_no
+	dept_name
+	)
+FROM '..\data\departments.csv' 
+DELIMITER ',' 
+CSV HEADER;
 
 CREATE TABLE dept_emp (
 	emp_no INTEGER NOT NULL,
@@ -32,6 +53,14 @@ CREATE TABLE dept_emp (
 )
 ;
 
+COPY departments (
+	emp_no
+	dept_no
+	)
+FROM '..\data\dept_emp.csv' 
+DELIMITER ',' 
+CSV HEADER;
+
 CREATE TABLE dept_manager (
 	dept_no VARCHAR(4) NOT NULL,
 	emp_no INTEGER NOT NULL,
@@ -40,6 +69,14 @@ CREATE TABLE dept_manager (
 )
 ;
 
+COPY dept_manager (
+	dept_no
+	emp_no
+	)
+FROM '..\data\dept_manager.csv' 
+DELIMITER ',' 
+CSV HEADER;
+
 CREATE TABLE salaries (
 	emp_no INTEGER NOT NULL,
 	salary INTEGER NOT NULL,
@@ -47,8 +84,24 @@ CREATE TABLE salaries (
 )
 ;
 
+COPY salaries (
+	emp_no
+	salaries
+	)
+FROM '..\data\salaries.csv' 
+DELIMITER ',' 
+CSV HEADER;
+
 CREATE TABLE titles (
 	title_id VARCHAR(5) NOT NULL,
 	title VARCHAR(18) NOT NULL
 )
 ;
+
+COPY titles (
+	title_id
+	title
+	)
+FROM '..\data\titles.csv' 
+DELIMITER ',' 
+CSV HEADER;
